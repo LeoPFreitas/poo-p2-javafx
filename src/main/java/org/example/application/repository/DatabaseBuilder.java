@@ -33,8 +33,8 @@ public class DatabaseBuilder {
 
         builder.append("CREATE TABLE person (\n");
         builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, \n");
-        builder.append("firstName TEXT NOT NULL, \n");
-        builder.append("lastName TEXT NOT NULL, \n");
+        builder.append("first_name TEXT NOT NULL, \n");
+        builder.append("last_name TEXT NOT NULL, \n");
         builder.append("email TEXT NOT NULL UNIQUE, \n");
         builder.append("cnpj TEXT, \n");
         builder.append("cpf TEXT, \n");
