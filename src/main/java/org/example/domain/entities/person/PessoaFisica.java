@@ -18,6 +18,11 @@ public class PessoaFisica extends Person {
         return 0.0D;
     }
 
+    @Override
+    public String getPersonType() {
+        return "Física";
+    }
+
     public String getCpf() {
         return cpf;
     }

@@ -1,7 +1,7 @@
 package org.example.domain.entities.person;
 
 public abstract class Person {
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -9,7 +9,7 @@ public abstract class Person {
     public Person() {
     }
 
-    public Person(long id, String firstName, String lastName, String email) {
+    public Person(Long id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -23,6 +23,8 @@ public abstract class Person {
     }
 
     public abstract Double getImportDuties();
+
+    public abstract String getPersonType();
 
     public String getFirstName() {
         return firstName;
@@ -48,11 +50,11 @@ public abstract class Person {
         this.email = email;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

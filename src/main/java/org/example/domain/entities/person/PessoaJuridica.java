@@ -16,6 +16,11 @@ public class PessoaJuridica extends Person {
         return 0.0D;
     }
 
+    @Override
+    public String getPersonType() {
+        return "Jurídica";
+    }
+
     public String getCnpj() {
         return cnpj;
     }
