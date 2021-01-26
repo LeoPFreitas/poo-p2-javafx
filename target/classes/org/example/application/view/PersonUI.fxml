@@ -3,24 +3,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.application.controller.PersonUIController">
+<AnchorPane prefHeight="368.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.application.controller.PersonUIController">
     <children>
-        <TableView fx:id="tableView" layoutX="14.0" layoutY="10.0" prefHeight="342.0" prefWidth="573.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
-            <columns>
-                <TableColumn fx:id="cId" prefWidth="100" text="ID" />
-                <TableColumn fx:id="cName" prefWidth="200" text="Nome Completo" />
-                <TableColumn fx:id="cEmail" prefWidth="200" text="E-mail" />
-                <TableColumn fx:id="cType" prefWidth="150" text="Tipo" />
-            </columns>
-        </TableView>
-        <Pane layoutX="14.0" layoutY="369.0" prefHeight="61.0" prefWidth="573.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
-            <children>
-                <Button fx:id="btnDelete" layoutX="279.0" layoutY="14.0" mnemonicParsing="false" onAction="#deletePerson" prefHeight="34.0" prefWidth="82.0" text="Deletar" />
-                <Button fx:id="btnEdit" layoutX="471.0" layoutY="14.0" mnemonicParsing="false" onAction="#editPerson" prefHeight="34.0" prefWidth="82.0" text="Editar" />
-                <Button fx:id="btnDetail" layoutX="376.0" layoutY="14.0" mnemonicParsing="false" onAction="#detailPerson" prefHeight="34.0" prefWidth="82.0" text="Detalhar" />
-                <Button fx:id="btnNew" layoutX="567.0" layoutY="14.0" mnemonicParsing="false" onAction="#createPerson" prefHeight="34.0" prefWidth="82.0" text="Novo" />
-                <Button fx:id="btnBack" layoutY="14.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="34.0" prefWidth="82.0" text="Voltar" />
-            </children>
-        </Pane>
+        <Label fx:id="lbFirstName" layoutX="37.0" layoutY="27.0" text="Nome" />
+        <Label fx:id="lbEmail" layoutX="30.0" layoutY="72.0" text="E-mail:" />
+        <Label fx:id="lbRg" layoutX="51.0" layoutY="117.0" text="RG:" />
+        <Label fx:id="lbLastName" layoutX="376.0" layoutY="28.0" text="Sobrenome:" />
+        <Label fx:id="lbPersonType" layoutX="420.0" layoutY="72.0" prefHeight="16.0" prefWidth="39.0" text="Tipo:" />
+        <Label fx:id="lbCnpj" layoutX="38.0" layoutY="163.0" prefHeight="16.0" prefWidth="39.0" text="CNPJ:" />
+        <TextField fx:id="txtFirstName" layoutX="86.0" layoutY="23.0" prefHeight="26.0" prefWidth="246.0" />
+        <TextField fx:id="txtEmail" layoutX="86.0" layoutY="67.0" prefHeight="26.0" prefWidth="246.0" />
+        <TextField fx:id="txtRg" layoutX="86.0" layoutY="112.0" prefHeight="26.0" prefWidth="246.0" />
+        <TextField fx:id="txtCpf" layoutX="467.0" layoutY="112.0" prefHeight="26.0" prefWidth="246.0" />
+        <TextField fx:id="txtCnpj" layoutX="86.0" layoutY="158.0" prefHeight="26.0" prefWidth="246.0" />
+        <Button fx:id="btnConfirm" layoutX="625.0" layoutY="301.0" mnemonicParsing="false" onAction="#saveOrUpdate" prefHeight="39.0" prefWidth="88.0" text="Salvar" />
+        <Button fx:id="btnCancel" layoutX="518.0" layoutY="301.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="39.0" prefWidth="88.0" text="Cancelar" />
+      <TextField fx:id="txtLastName" layoutX="467.0" layoutY="23.0" prefHeight="26.0" prefWidth="246.0" />
+      <ComboBox fx:id="cbxPersonType" layoutX="467.0" layoutY="67.0" prefWidth="150.0" />
+      <Label fx:id="lbCpf" layoutX="427.0" layoutY="117.0" text="CPF:" />
     </children>
+
 </AnchorPane>
