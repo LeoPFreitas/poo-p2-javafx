@@ -2,59 +2,56 @@ package org.example.application.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
-import org.example.application.view.WindowLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import org.example.domain.entities.person.Person;
-
-import java.io.IOException;
-
-import static org.example.application.main.Main.removePersonUseCase;
+import org.example.domain.entities.person.PersonType;
 
 public class PersonUIController {
     @FXML
-    private TableView<Person> tableView;
-
-
+    private Label lbFirstName;
     @FXML
-    private void initialize() {
-        bindTableViewToItemsList();
-        bindColumnsToValueSources();
-        loadDataAndShow();
-    }
+    private Label lbEmail;
+    @FXML
+    private Label lbRg;
+    @FXML
+    private Label lbLastName;
+    @FXML
+    private Label lbPersonType;
+    @FXML
+    private Label lbCnpj;
+    @FXML
+    private Label lbCpf;
+    @FXML
+    private TextField txtFirstName;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private TextField txtRg;
+    @FXML
+    private TextField txtCpf;
+    @FXML
+    private TextField txtCnpj;
+    @FXML
+    private TextField txtLastName;
+    @FXML
+    private Button btnConfirm;
+    @FXML
+    private Button btnCancel;
+    @FXML
+    private ComboBox<PersonType> cbxPersonType;
 
-    private void bindTableViewToItemsList() {
-
-    }
-
-    private void bindColumnsToValueSources() {
-
-    }
-
-    private void loadDataAndShow() {
-
-    }
-
-    public void backToPreviousScene(ActionEvent actionEvent) throws IOException {
-        WindowLoader.setRoot("MainUI");
-    }
-
-    public void deletePerson(ActionEvent actionEvent) {
-        Person selectedUser = tableView.getSelectionModel().getSelectedItem();
-        if (selectedUser != null) {
-            removePersonUseCase.remove(selectedUser);
-            loadDataAndShow();
-        }
-    }
-
-    public void detailPerson(ActionEvent actionEvent) {
-
-    }
-
-    public void editPerson(ActionEvent actionEvent) {
+    public void setUser(Person selectedPerson, UIMode mode) {
 
     }
 
-    public void createPerson(ActionEvent actionEvent) {
+    public void saveOrUpdate(ActionEvent actionEvent) {
+
+    }
+
+    public void backToPreviousScene(ActionEvent actionEvent) {
 
     }
 }
