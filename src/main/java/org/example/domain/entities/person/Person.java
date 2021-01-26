@@ -24,7 +24,7 @@ public abstract class Person {
 
     public abstract Double getImportDuties();
 
-    public abstract String getPersonType();
+    public abstract PersonType getPersonType();
 
     public String getFirstName() {
         return firstName;
@@ -61,9 +61,10 @@ public abstract class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", id=" + id +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

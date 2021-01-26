@@ -19,8 +19,8 @@ public class PessoaFisica extends Person {
     }
 
     @Override
-    public String getPersonType() {
-        return "Física";
+    public PersonType getPersonType() {
+        return PersonType.FISICA;
     }
 
     public String getCpf() {

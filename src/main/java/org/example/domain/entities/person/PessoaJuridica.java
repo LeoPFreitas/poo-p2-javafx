@@ -17,8 +17,8 @@ public class PessoaJuridica extends Person {
     }
 
     @Override
-    public String getPersonType() {
-        return "Jurídica";
+    public PersonType getPersonType() {
+        return PersonType.JURIDICA;
     }
 
     public String getCnpj() {
