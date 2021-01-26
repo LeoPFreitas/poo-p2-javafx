@@ -147,7 +147,7 @@ public class SqlitePersonDAO implements PersonDAO {
                 stmt.setNull(6, Types.VARCHAR);
             }
 
-            stmt.setString(6, String.valueOf(person.getId()));
+            stmt.setString(7, String.valueOf(person.getId()));
 
             stmt.execute();
             return true;
