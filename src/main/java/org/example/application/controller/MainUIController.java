@@ -16,7 +16,6 @@ public class MainUIController {
     }
 
     public void managePerson(ActionEvent actionEvent) throws IOException {
-        WindowLoader.setRoot("PersonUI");
-
+        WindowLoader.setRoot("PersonManagementUI");
     }
 }
