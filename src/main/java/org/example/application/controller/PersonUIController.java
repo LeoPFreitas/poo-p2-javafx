@@ -76,12 +76,31 @@ public class PersonUIController {
 
         if (mode == UIMode.UPDATE) {
             configureUpdateUIMode();
+        } else if (mode == UIMode.VIEW) {
+            configureViewUIMode();
         }
     }
 
     private void configureUpdateUIMode() {
         btnConfirm.setVisible(false);
         btnUpdate.setVisible(true);
+    }
+
+    private void configureViewUIMode() {
+        btnCancel.setLayoutX(btnConfirm.getLayoutX());
+        btnCancel.setLayoutY(btnConfirm.getLayoutY());
+        btnCancel.setText("Fechar");
+
+        btnConfirm.setVisible(false);
+        btnUpdate.setVisible(false);
+
+        txtFirstName.setDisable(true);
+        txtEmail.setDisable(true);
+        txtRg.setDisable(true);
+        txtCpf.setDisable(true);
+        txtCnpj.setDisable(true);
+        txtLastName.setDisable(true);
+        cbxPersonType.setDisable(true);
     }
 
     private void setEntityIntoView() {
