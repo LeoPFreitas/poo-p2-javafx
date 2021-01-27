@@ -126,7 +126,7 @@ public class PersonUIController {
         if (personType.equals(PersonType.FISICA)) {
             txtRg.setText(((PessoaFisica) person).getRg());
             txtCpf.setText(((PessoaFisica) person).getCpf());
-            disablePessoJuridicaFields();
+            disablePessoaJuridicaFields();
             return;
         } else if (personType.equals(PersonType.JURIDICA)) {
             txtCnpj.setText(((PessoaJuridica) person).getCnpj());
@@ -231,10 +231,10 @@ public class PersonUIController {
     private void enablePessoaFisicaTextFields() {
         txtCnpj.setText("");
 
-        disablePessoJuridicaFields();
+        disablePessoaJuridicaFields();
     }
 
-    private void disablePessoJuridicaFields() {
+    private void disablePessoaJuridicaFields() {
         txtCnpj.setDisable(true);
         txtCpf.setDisable(false);
         txtRg.setDisable(false);
