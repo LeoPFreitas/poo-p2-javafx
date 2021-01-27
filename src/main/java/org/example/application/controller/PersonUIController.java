@@ -145,6 +145,14 @@ public class PersonUIController {
         person.setFirstName(txtFirstName.getText());
         person.setLastName(txtLastName.getText());
         person.setEmail(txtEmail.getText());
+        PersonType personType = person.getPersonType();
+
+        if (personType.equals(PersonType.FISICA)) {
+            ((PessoaFisica) person).setRg(txtRg.getText());
+            ((PessoaFisica) person).setCpf(txtCpf.getText());
+        } else {
+            ((PessoaJuridica) person).setCnpj(txtCnpj.getText());
+        }
     }
 
     private void createPerson() {

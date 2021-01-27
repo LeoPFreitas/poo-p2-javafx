@@ -114,8 +114,8 @@ public class SqlitePersonDAO implements PersonDAO {
         String email = rs.getString("email");
 
         String cnpj = rs.getString("cnpj");
-        String cpf = rs.getString("rg");
-        String rg = rs.getString("cpf");
+        String cpf = rs.getString("cpf");
+        String rg = rs.getString("rg");
 
 
         if (cnpj != null) {
