@@ -71,22 +71,12 @@ public class SqlitePersonDAO implements PersonDAO {
         return Optional.ofNullable(person);
     }
 
-    // TODO refactor for rem duplicated code
     @Override
     public List<Person> findAllByLastName(String lastName) {
         List<Person> personList = new ArrayList<>();
         String sql = "SELECT * FROM person WHERE " + lastName + " = ?";
 
-        try (PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql)) {
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                Person person = resultSetToEntity(resultSet);
-                personList.add(person);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return personList;
+        return fetchPersons(personList, sql);
     }
 
     @Override
@@ -94,6 +84,10 @@ public class SqlitePersonDAO implements PersonDAO {
         List<Person> personList = new ArrayList<>();
         String sql = "SELECT * FROM person";
 
+        return fetchPersons(personList, sql);
+    }
+
+    private List<Person> fetchPersons(List<Person> personList, String sql) {
         try (PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql)) {
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
