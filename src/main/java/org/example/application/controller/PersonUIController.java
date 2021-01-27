@@ -56,29 +56,42 @@ public class PersonUIController {
 
     private Person person;
 
-    private UIMode uiMode;
-
     @FXML
     private void initialize() {
         cbxPersonType.getItems().setAll(PersonType.values());
     }
 
+    public void showInProperMode(UIMode uiMode) {
+        switchUIMode(uiMode);
+    }
 
-    public void setUser(Person selectedPerson, UIMode mode) throws IOException {
+    public void showInProperMode(UIMode uiMode, Person selectedPerson) {
         if (selectedPerson == null) {
             throw new IllegalArgumentException("Person can not be null.");
         }
 
         this.person = selectedPerson;
-        this.uiMode = mode;
-
         setEntityIntoView();
+        switchUIMode(uiMode);
+    }
 
-        if (mode == UIMode.UPDATE) {
-            configureUpdateUIMode();
-        } else if (mode == UIMode.VIEW) {
-            configureViewUIMode();
+    private void switchUIMode(UIMode uiMode) {
+        switch (uiMode) {
+            case VIEW:
+                configureViewUIMode();
+                break;
+            case CREATE:
+                configureCreateUIMode();
+                break;
+            case UPDATE:
+                configureUpdateUIMode();
+                break;
         }
+    }
+
+    private void configureCreateUIMode() {
+        btnConfirm.setVisible(true);
+        btnUpdate.setVisible(false);
     }
 
     private void configureUpdateUIMode() {
@@ -220,13 +233,5 @@ public class PersonUIController {
 
     }
 
-    public void setUiMode(UIMode uiMode) {
-        this.uiMode = uiMode;
 
-        if (uiMode == UIMode.CREATE) {
-
-            btnConfirm.setVisible(true);
-            btnUpdate.setVisible(false);
-        }
-    }
 }

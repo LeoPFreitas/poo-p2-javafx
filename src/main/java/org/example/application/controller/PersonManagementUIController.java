@@ -82,26 +82,27 @@ public class PersonManagementUIController {
     }
 
     public void detailPerson(ActionEvent actionEvent) throws IOException {
-        showUserInMode(UIMode.VIEW);
-    }
-
-    public void editPerson(ActionEvent actionEvent) throws IOException {
-        showUserInMode(UIMode.UPDATE);
-    }
-
-    // TODO refactor this ui mode
-    public void createPerson(ActionEvent actionEvent) throws IOException {
-        WindowLoader.setRoot("PersonUI");
-        PersonUIController controller = (PersonUIController) WindowLoader.getController();
-        controller.setUiMode(UIMode.CREATE);
-    }
-
-    private void showUserInMode(UIMode mode) throws IOException {
         Person selectedPerson = tableView.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
             WindowLoader.setRoot("PersonUI");
             PersonUIController controller = (PersonUIController) WindowLoader.getController();
-            controller.setUser(selectedPerson, mode);
+            controller.showInProperMode(UIMode.VIEW, selectedPerson);
         }
+    }
+
+    public void editPerson(ActionEvent actionEvent) throws IOException {
+        Person selectedPerson = tableView.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            WindowLoader.setRoot("PersonUI");
+            PersonUIController controller = (PersonUIController) WindowLoader.getController();
+            controller.showInProperMode(UIMode.UPDATE, selectedPerson);
+        }
+    }
+
+    public void createPerson(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("PersonUI");
+        PersonUIController controller = (PersonUIController) WindowLoader.getController();
+
+        controller.showInProperMode(UIMode.CREATE);
     }
 }
