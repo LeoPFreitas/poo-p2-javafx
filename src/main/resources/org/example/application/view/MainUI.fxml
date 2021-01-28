@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.application.controller.MainUIController">
+<AnchorPane prefHeight="622.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.application.controller.MainUIController">
     <children>
         <Label fx:id="lbIdImportador" layoutX="18.0" layoutY="105.0" text="ID Importador:  ">
             <font>
@@ -24,16 +24,15 @@
         </Label>
         <TableView fx:id="tableView" layoutX="14.0" layoutY="165.0" onMouseClicked="#getSelectedAndSetButton" prefHeight="147.0" prefWidth="570.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="165.0">
             <columns>
-                <TableColumn fx:id="cName" prefWidth="200" text="Nome" />
-                <TableColumn fx:id="cAuthors" prefWidth="200" text="Autores" />
+                <TableColumn fx:id="cName" prefWidth="135.0" text="Nome" />
+                <TableColumn fx:id="cAuthors" prefWidth="135.0" text="Autores" />
             </columns>
         </TableView>
         <Pane layoutX="14.0" layoutY="369.0" prefHeight="61.0" prefWidth="573.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
             <children>
-                <Button layoutY="14.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Gerenciar Importações" />
+                <Button fx:id="btnImport" layoutY="14.0" mnemonicParsing="false" onAction="#startImportProcess" prefHeight="46.0" prefWidth="177.0" text="Nova Importação" />
                 <Button fx:id="btnManagePerson" layoutX="198.0" layoutY="14.0" mnemonicParsing="false" onAction="#managePerson" prefHeight="46.0" prefWidth="177.0" text="Gerenciar Usuários" />
-                <Button layoutX="393.0" layoutY="14.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0"
-                        text="Gerenciar Relatorios" />
+                <Button layoutX="393.0" layoutY="14.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Gerenciar Relatorios" />
             <Button layoutX="590.0" layoutY="15.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="Importar" />
 
             </children>
