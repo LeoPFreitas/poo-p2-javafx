@@ -19,7 +19,7 @@ public class MainUIController {
         WindowLoader.setRoot("PersonManagementUI");
     }
 
-    public void startImportProcess(ActionEvent actionEvent) {
-
+    public void startImportProcess(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("ImportationUI");
     }
 }
