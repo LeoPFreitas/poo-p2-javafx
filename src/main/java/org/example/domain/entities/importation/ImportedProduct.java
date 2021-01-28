@@ -1,8 +1,11 @@
 package org.example.domain.entities.importation;
 
 import org.example.domain.entities.person.Person;
+import org.example.domain.utils.EntityNotFoundException;
 
 import java.time.LocalDate;
+
+import static org.example.application.main.Main.findPersonUseCase;
 
 public class ImportedProduct {
     private ProductCategory productCategory;
@@ -11,30 +14,48 @@ public class ImportedProduct {
     private Double productWeightInKG;
     private LocalDate importDate;
     private Long id;
-    private Person person;
+    private Long userId;
+    private Double totalFreight;
+    private Double totalDuties;
+    private Double finalPrice;
 
     public ImportedProduct() {
     }
 
     public ImportedProduct(ProductCategory productCategory, String productName, Double productPrice,
-                           Double productWeightInKG, Person person) {
+                           Double productWeightInKG, Long userId) {
         this.productCategory = productCategory;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productWeightInKG = productWeightInKG;
         this.importDate = LocalDate.now();
-        this.person = person;
+        this.userId = userId;
+        this.totalFreight = productWeightInKG * 13;
     }
 
-    public ImportedProduct(ProductCategory productCategory, String productName, Double productPrice, Double productWeightInKG, LocalDate importDate, Long id, Person person) {
+    public ImportedProduct(ProductCategory productCategory, String productName, Double productPrice,
+                           Double productWeightInKG, LocalDate importDate, Long id, Long userId) {
         this.productCategory = productCategory;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productWeightInKG = productWeightInKG;
         this.importDate = importDate;
         this.id = id;
-        this.person = person;
+        this.userId = userId;
+        this.totalFreight = productWeightInKG * 13;
     }
+
+    public Double calcDuties(Double totalFreight, Double totalProductPrice) {
+
+        Person person = findPersonUseCase.findOne(this.userId)
+                .orElseThrow(() -> new EntityNotFoundException("User with ID " + this.userId + " not founded."));
+
+        return (totalFreight + totalProductPrice) * person.getImportDuties();
+    }
+    public Double calcFinalPrice(Double totalFreight, Double totalProductPrice, Double totalDuties) {
+        return totalFreight + totalProductPrice + totalDuties;
+    }
+
 
     public ProductCategory getProductCategory() {
         return productCategory;
@@ -84,12 +105,36 @@ public class ImportedProduct {
         this.importDate = importDate;
     }
 
-    public Person getPerson() {
-        return person;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public Double getTotalDuties() {
+        return totalDuties;
+    }
+
+    public void setTotalDuties(Double totalDuties) {
+        this.totalDuties = totalDuties;
+    }
+
+    public Double getTotalFreight() {
+        return totalFreight;
+    }
+
+    public void setTotalFreight(Double totalFreight) {
+        this.totalFreight = totalFreight;
+    }
+
+    public Double getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(Double finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
+    public Long getUserId() {
+        return userId;
     }
 
     @Override
@@ -102,9 +147,5 @@ public class ImportedProduct {
                 ", importDate=" + importDate +
                 ", id=" + id +
                 '}';
-    }
-
-    public int getUserId() {
-        return 0;
     }
 }

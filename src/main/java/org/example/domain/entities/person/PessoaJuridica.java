@@ -13,7 +13,7 @@ public class PessoaJuridica extends Person {
 
     @Override
     public Double getImportDuties() {
-        return 0.0D;
+        return 0.10D;
     }
 
     @Override

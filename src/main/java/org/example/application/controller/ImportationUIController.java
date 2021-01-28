@@ -2,11 +2,17 @@ package org.example.application.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import org.example.application.view.WindowLoader;
+import org.example.domain.entities.importation.ImportedProduct;
 import org.example.domain.entities.importation.ProductCategory;
+import org.example.domain.entities.person.Person;
+
+import java.io.IOException;
+import java.util.Optional;
+
+import static org.example.application.main.Main.findPersonUseCase;
+import static org.example.application.main.Main.importProductUseCase;
 
 public class ImportationUIController {
     @FXML
@@ -16,7 +22,7 @@ public class ImportationUIController {
     @FXML
     public Label lbPrice;
     @FXML
-    public Label lbLastName;
+    public Label lbValidatedPerson;
     @FXML
     public Label lbCategory;
     @FXML
@@ -48,8 +54,33 @@ public class ImportationUIController {
     }
 
     public void importProduct(ActionEvent actionEvent) {
+        if (importedProduct == null) {
+            createImportedProduct();
+        }
 
+        getEntityFromView();
+
+        importProductUseCase.importProduct(importedProduct);
     }
+
+    private void createImportedProduct() {
+        importedProduct = new ImportedProduct(
+                cbxCategory.getValue(),
+                txtName.getText(),
+                Double.valueOf(txtPrice.getText()),
+                Double.valueOf(txtWeight.getText()),
+                Long.valueOf(txtPersonID.getText())
+        );
+    }
+
+    private void getEntityFromView() {
+        importedProduct.setProductCategory(cbxCategory.getValue());
+        importedProduct.setProductName(txtName.getText());
+        importedProduct.setProductPrice(Double.valueOf(txtPrice.getText()));
+        importedProduct.setProductWeightInKG(Double.valueOf(txtWeight.getText()));
+        importedProduct.setUserId(Long.valueOf(txtPersonID.getText()));
+    }
+
 
     public void validatePerson(ActionEvent actionEvent) {
         long personId;

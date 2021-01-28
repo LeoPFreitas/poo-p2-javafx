@@ -15,7 +15,7 @@ public class PessoaFisica extends Person {
 
     @Override
     public Double getImportDuties() {
-        return 0.0D;
+        return 0.50D;
     }
 
     @Override
