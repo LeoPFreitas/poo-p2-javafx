@@ -38,6 +38,15 @@ public class ImportationUIController {
     @FXML
     public Label lbWeight;
 
+    private Person person;
+    private ImportedProduct importedProduct;
+
+    @FXML
+    private void initialize() {
+        disableImportationFieldsAndButton();
+        cbxCategory.getItems().setAll(ProductCategory.values());
+    }
+
     public void importProduct(ActionEvent actionEvent) {
 
     }
@@ -71,6 +80,7 @@ public class ImportationUIController {
         btnImport.setDisable(false);
         cbxCategory.setDisable(false);
     }
+
     private void disableImportationFieldsAndButton() {
         txtName.setDisable(true);
         txtPrice.setDisable(true);
@@ -79,7 +89,16 @@ public class ImportationUIController {
         cbxCategory.setDisable(true);
     }
 
-    public void backToPreviousScene(ActionEvent actionEvent) {
 
+    private void showAlert(String title, String message, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.setHeaderText(null);
+        alert.showAndWait();
+    }
+
+    public void backToPreviousScene(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("MainUI");
     }
 }
