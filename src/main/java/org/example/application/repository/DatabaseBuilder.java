@@ -20,6 +20,7 @@ public class DatabaseBuilder {
     private void buildTables() {
         try (Statement statement = ConnectionFactory.createStatement()) {
             statement.addBatch(createPersonTable());
+            statement.addBatch(createImportationTable());
             statement.executeBatch();
 
             System.out.println("Database successfully created.");
@@ -39,6 +40,23 @@ public class DatabaseBuilder {
         builder.append("cnpj TEXT, \n");
         builder.append("cpf TEXT, \n");
         builder.append("rg TEXT \n");
+        builder.append("); \n");
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
+    private String createImportationTable() {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("CREATE TABLE importation (\n");
+        builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, \n");
+        builder.append("user INTEGER NOT NULL, \n");
+        builder.append("product_name TEXT NOT NULL, \n");
+        builder.append("category TEXT NOT NULL, \n");
+        builder.append("product_price NUMERIC(14, 4) NOT NULL, \n");
+        builder.append("product_wight INTEGER NOT NULL, \n");
+        builder.append("date DATE NOT NULL, \n");
+        builder.append("FOREIGN KEY(user) REFERENCES person(id) \n");
         builder.append("); \n");
         System.out.println(builder.toString());
         return builder.toString();
