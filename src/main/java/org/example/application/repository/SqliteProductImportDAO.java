@@ -2,7 +2,6 @@ package org.example.application.repository;
 
 import org.example.domain.entities.importation.ImportedProduct;
 import org.example.domain.entities.importation.ProductCategory;
-import org.example.domain.entities.person.Person;
 import org.example.domain.usecases.importation.ProductImportDAO;
 
 import java.sql.PreparedStatement;
@@ -12,8 +11,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import static org.example.application.main.Main.findPersonUseCase;
 
 public class SqliteProductImportDAO implements ProductImportDAO {
 
@@ -31,7 +28,10 @@ public class SqliteProductImportDAO implements ProductImportDAO {
             stmt.setString(6, importedProduct.getProductCategory().toString());
 
             stmt.execute();
-            return importedProduct.getId();
+
+            ResultSet resultSet = stmt.getGeneratedKeys();
+            Long generatedId = resultSet.getLong(1);
+            return generatedId;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -74,8 +74,7 @@ public class SqliteProductImportDAO implements ProductImportDAO {
 
     private ImportedProduct resultSetToEntity(ResultSet rs) throws SQLException {
         long personId = rs.getLong("user");
-        Person person = findPersonUseCase.findOne(personId).get();
-
+        long id = rs.getLong("id");
         String date = rs.getString("date");
         LocalDate convertedDate = null;
 
@@ -88,8 +87,8 @@ public class SqliteProductImportDAO implements ProductImportDAO {
                 rs.getDouble("product_price"),
                 rs.getDouble("product_weight"),
                 convertedDate,
-                rs.getLong("id"),
-                person
+                id,
+                personId
         );
     }
 
