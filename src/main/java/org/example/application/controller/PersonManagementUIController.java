@@ -4,12 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.application.view.WindowLoader;
 import org.example.domain.entities.person.Person;
+import org.example.domain.utils.IllegalPersonDeleteException;
 
 import java.io.IOException;
 import java.util.List;
@@ -76,7 +78,11 @@ public class PersonManagementUIController {
     public void deletePerson(ActionEvent actionEvent) {
         Person selectedUser = tableView.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
-            removePersonUseCase.remove(selectedUser);
+            try {
+                removePersonUseCase.remove(selectedUser);
+            } catch (IllegalPersonDeleteException e) {
+                showAlert("Erro!", e.getMessage(), Alert.AlertType.ERROR);
+            }
             loadDataAndShow();
         }
     }
@@ -104,5 +110,13 @@ public class PersonManagementUIController {
         PersonUIController controller = (PersonUIController) WindowLoader.getController();
 
         controller.showInProperMode(UIMode.CREATE);
+    }
+
+    private void showAlert(String title, String message, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.setHeaderText(null);
+        alert.showAndWait();
     }
 }

@@ -2,6 +2,7 @@ package org.example.domain.usecases.person;
 
 import org.example.domain.entities.person.Person;
 import org.example.domain.utils.EntityNotFoundException;
+import org.example.domain.utils.IllegalPersonDeleteException;
 
 public class RemovePersonUseCase {
     private final PersonDAO personDAO;
@@ -14,21 +15,25 @@ public class RemovePersonUseCase {
         String id = longToStringConverter(personId);
 
         if (personDAO.findOne(id).isEmpty()) {
-            throw new EntityNotFoundException("User not found.");
+            throw new EntityNotFoundException("Person not founded.");
         }
 
         return personDAO.deleteByKey(id);
     }
 
-    public boolean remove(Person user) {
+    public boolean remove(Person person) {
 
-        String userId = longToStringConverter(user.getId());
+        String userId = longToStringConverter(person.getId());
 
         if (personDAO.findOne(userId).isEmpty()) {
-            throw new EntityNotFoundException("Book not found.");
+            throw new EntityNotFoundException("Person not founded.");
         }
 
-        return personDAO.delete(user);
+        if (person.getImportedProductCount() > 0) {
+            throw new IllegalPersonDeleteException("Can not remove a person that have imported a product.");
+        }
+
+        return personDAO.delete(person);
     }
 
     private String longToStringConverter(long id) {
