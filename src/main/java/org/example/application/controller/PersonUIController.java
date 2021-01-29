@@ -99,6 +99,7 @@ public class PersonUIController {
     private void configureUpdateUIMode() {
         btnConfirm.setVisible(false);
         btnUpdate.setVisible(true);
+        cbxPersonType.setDisable(true);
     }
 
     private void configureViewUIMode() {
