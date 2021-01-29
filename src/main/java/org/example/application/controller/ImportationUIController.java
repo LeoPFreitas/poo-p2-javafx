@@ -54,15 +54,20 @@ public class ImportationUIController {
     }
 
     public void importProduct(ActionEvent actionEvent) throws IOException {
-        if (importedProduct == null) {
-            createImportedProduct();
+        try {
+            if (importedProduct == null) {
+                createImportedProduct();
+            }
+
+            getEntityFromView();
+
+            importProductUseCase.importProduct(importedProduct);
+
+            WindowLoader.setRoot("PersonManagementUI");
+        } catch (NumberFormatException e) {
+            showAlert("Error!", "Product price and/or product product weight must be a valid Double",
+                    Alert.AlertType.ERROR);
         }
-
-        getEntityFromView();
-
-        importProductUseCase.importProduct(importedProduct);
-
-        WindowLoader.setRoot("PersonManagementUI");
     }
 
     private void createImportedProduct() {
