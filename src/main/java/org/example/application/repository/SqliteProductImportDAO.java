@@ -73,7 +73,6 @@ public class SqliteProductImportDAO implements ProductImportDAO {
     }
 
     private ImportedProduct resultSetToEntity(ResultSet rs) throws SQLException {
-        long personId = rs.getLong("user");
         long id = rs.getLong("id");
         String date = rs.getString("date");
         LocalDate convertedDate = null;
@@ -87,8 +86,7 @@ public class SqliteProductImportDAO implements ProductImportDAO {
                 rs.getDouble("product_price"),
                 rs.getDouble("product_weight"),
                 convertedDate,
-                id,
-                personId
+                id
         );
     }
 
@@ -127,8 +125,8 @@ public class SqliteProductImportDAO implements ProductImportDAO {
 
     @Override
     public boolean delete(ImportedProduct importedProduct) {
-        if (importedProduct == null || importedProduct.getId() == null)
+        if (importedProduct == null || importedProduct.getProductImportId() == null)
             throw new IllegalArgumentException("ImportedProduct ID must not be null.");
-        return deleteByKey(importedProduct.getId());
+        return deleteByKey(importedProduct.getProductImportId());
     }
 }

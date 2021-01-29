@@ -1,5 +1,7 @@
 package org.example.application.repository;
 
+import org.example.domain.entities.importation.ImportedProduct;
+import org.example.domain.entities.importation.ProductCategory;
 import org.example.domain.entities.person.Person;
 import org.example.domain.entities.person.PessoaFisica;
 import org.example.domain.entities.person.PessoaJuridica;
@@ -9,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -63,7 +66,7 @@ public class SqlitePersonDAO implements PersonDAO {
             stmt.setString(1, value);
             ResultSet resultSet = stmt.executeQuery();
             if (resultSet.next()) {
-                person = resultSetToEntity(resultSet);
+                person = resultSetToPerson(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,7 +94,7 @@ public class SqlitePersonDAO implements PersonDAO {
         try (PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql)) {
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
-                Person person = resultSetToEntity(resultSet);
+                Person person = resultSetToPerson(resultSet);
                 personList.add(person);
             }
         } catch (SQLException e) {
@@ -100,8 +103,43 @@ public class SqlitePersonDAO implements PersonDAO {
         return personList;
     }
 
+    private List<ImportedProduct> fetchImportedProducts(Long personId) {
+        List<ImportedProduct> importedProductList = new ArrayList<>();
 
-    private Person resultSetToEntity(ResultSet rs) throws SQLException {
+        String sql = "SELECT * FROM importation WHERE id = ?";
+
+        try (PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql)) {
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                ImportedProduct importedProduct = resultSetToImportedProduct(resultSet);
+                importedProductList.add(importedProduct);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return importedProductList;
+    }
+
+    private ImportedProduct resultSetToImportedProduct(ResultSet rs) throws SQLException {
+        long id = rs.getLong("id");
+        String productName = rs.getString("product_name");
+        ProductCategory productCategory = ProductCategory.toEnum(rs.getString("category"));
+        Double productPrice = rs.getDouble("product_price");
+        Double productWeight = rs.getDouble("product_weight");
+        LocalDate date = LocalDate.parse(rs.getString("date"));
+
+        return new ImportedProduct(
+                productCategory,
+                productName,
+                productPrice,
+                productWeight,
+                date,
+                id
+        );
+    }
+
+
+    private Person resultSetToPerson(ResultSet rs) throws SQLException {
         long id = rs.getLong("id");
         String firstName = rs.getString("first_name");
         String lastName = rs.getString("last_name");

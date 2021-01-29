@@ -1,10 +1,16 @@
 package org.example.domain.entities.person;
 
+import org.example.domain.entities.importation.ImportedProduct;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Person {
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
+    private List<ImportedProduct> importedProductList = new ArrayList<>();
 
     public Person() {
     }
@@ -52,6 +58,14 @@ public abstract class Person {
 
     public Long getId() {
         return id;
+    }
+
+    public List<ImportedProduct> getImportedProductList() {
+        return importedProductList;
+    }
+
+    public void addImportedProduct(ImportedProduct importedProduct) {
+        this.importedProductList.add(importedProduct);
     }
 
     public void setId(Long id) {

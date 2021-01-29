@@ -36,6 +36,6 @@ public class Main {
         removePersonUseCase = new RemovePersonUseCase(personDAO);
 
         ProductImportDAO productImportDAO = new SqliteProductImportDAO();
-        importProductUseCase = new ImportProductUseCase(productImportDAO);
+        importProductUseCase = new ImportProductUseCase(productImportDAO, findPersonUseCase);
     }
 }

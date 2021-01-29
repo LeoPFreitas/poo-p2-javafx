@@ -78,7 +78,6 @@ public class ImportationUIController {
         importedProduct.setProductName(txtName.getText());
         importedProduct.setProductPrice(Double.valueOf(txtPrice.getText()));
         importedProduct.setProductWeightInKG(Double.valueOf(txtWeight.getText()));
-        importedProduct.setUserId(Long.valueOf(txtPersonID.getText()));
     }
 
 
