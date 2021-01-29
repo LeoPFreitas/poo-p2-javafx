@@ -68,6 +68,14 @@ public abstract class Person {
         this.importedProductList.add(importedProduct);
     }
 
+    public void addImportedProduct(List<ImportedProduct> importedProduct) {
+        this.importedProductList.addAll(importedProduct);
+    }
+
+    public Integer getImportedProductCount() {
+        return importedProductList.size();
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

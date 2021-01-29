@@ -22,6 +22,8 @@ public class PersonUIController {
     @FXML
     public Button btnUpdate;
     @FXML
+    public Label lbTotalmports;
+    @FXML
     private Label lbFirstName;
     @FXML
     private Label lbEmail;
@@ -121,6 +123,7 @@ public class PersonUIController {
         txtLastName.setText(person.getLastName());
         txtEmail.setText(person.getEmail());
         cbxPersonType.setValue(person.getPersonType());
+        lbTotalmports.setText(String.valueOf(person.getImportedProductCount()));
 
         PersonType personType = person.getPersonType();
         if (personType.equals(PersonType.FISICA)) {
