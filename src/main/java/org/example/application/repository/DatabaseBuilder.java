@@ -37,9 +37,9 @@ public class DatabaseBuilder {
         builder.append("first_name TEXT NOT NULL, \n");
         builder.append("last_name TEXT NOT NULL, \n");
         builder.append("email TEXT NOT NULL UNIQUE, \n");
-        builder.append("cnpj TEXT, \n");
-        builder.append("cpf TEXT, \n");
-        builder.append("rg TEXT \n");
+        builder.append("cnpj TEXT UNIQUE, \n");
+        builder.append("cpf TEXT UNIQUE, \n");
+        builder.append("rg TEXT UNIQUE \n");
         builder.append("); \n");
         System.out.println(builder.toString());
         return builder.toString();
