@@ -18,7 +18,6 @@ import java.util.Optional;
 
 public class SqlitePersonDAO implements PersonDAO {
 
-
     @Override
     public String create(Person person) {
         String sql = "INSERT INTO Person(first_name, last_name, email, cnpj, cpf, rg) VALUES (?, ?, ?, ?, ?, ?)";
@@ -87,7 +86,10 @@ public class SqlitePersonDAO implements PersonDAO {
         List<Person> personList = new ArrayList<>();
         String sql = "SELECT * FROM person";
 
-        return fetchPersons(personList, sql);
+        fetchPersons(personList, sql);
+        fetchImportations(personList);
+
+        return personList;
     }
 
     private List<Person> fetchPersons(List<Person> personList, String sql) {
@@ -103,12 +105,23 @@ public class SqlitePersonDAO implements PersonDAO {
         return personList;
     }
 
+    private void fetchImportations(List<Person> personList) {
+        for (Person person : personList) {
+            Long id = person.getId();
+            List<ImportedProduct> importedProductList = fetchImportedProducts(id);
+            if (!importedProductList.isEmpty()) {
+                person.addImportedProduct(importedProductList);
+            }
+        }
+    }
+
     private List<ImportedProduct> fetchImportedProducts(Long personId) {
         List<ImportedProduct> importedProductList = new ArrayList<>();
 
-        String sql = "SELECT * FROM importation WHERE id = ?";
+        String sql = "SELECT * FROM importation WHERE user = ?";
 
         try (PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql)) {
+            stmt.setString(1, String.valueOf(personId));
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
                 ImportedProduct importedProduct = resultSetToImportedProduct(resultSet);
@@ -119,25 +132,6 @@ public class SqlitePersonDAO implements PersonDAO {
         }
         return importedProductList;
     }
-
-    private ImportedProduct resultSetToImportedProduct(ResultSet rs) throws SQLException {
-        long id = rs.getLong("id");
-        String productName = rs.getString("product_name");
-        ProductCategory productCategory = ProductCategory.toEnum(rs.getString("category"));
-        Double productPrice = rs.getDouble("product_price");
-        Double productWeight = rs.getDouble("product_weight");
-        LocalDate date = LocalDate.parse(rs.getString("date"));
-
-        return new ImportedProduct(
-                productCategory,
-                productName,
-                productPrice,
-                productWeight,
-                date,
-                id
-        );
-    }
-
 
     private Person resultSetToPerson(ResultSet rs) throws SQLException {
         long id = rs.getLong("id");
@@ -155,6 +149,26 @@ public class SqlitePersonDAO implements PersonDAO {
         } else {
             return new PessoaFisica(id, firstName, lastName, email, cpf, rg);
         }
+    }
+
+    private ImportedProduct resultSetToImportedProduct(ResultSet rs) throws SQLException {
+        long importId = rs.getLong("id");
+        long userId = rs.getLong("user");
+        String productName = rs.getString("product_name");
+        ProductCategory productCategory = ProductCategory.toEnum(rs.getString("category"));
+        Double productPrice = rs.getDouble("product_price");
+        Double productWeight = rs.getDouble("product_wight");
+        LocalDate date = LocalDate.parse(rs.getString("date"));
+
+        return new ImportedProduct(
+                productCategory,
+                productName,
+                productPrice,
+                productWeight,
+                date,
+                importId,
+                userId
+        );
     }
 
     @Override

@@ -84,7 +84,7 @@ public class SqliteProductImportDAO implements ProductImportDAO {
                 ProductCategory.toEnum(rs.getString("category")),
                 rs.getString("product_name"),
                 rs.getDouble("product_price"),
-                rs.getDouble("product_weight"),
+                rs.getDouble("product_wight"),
                 convertedDate,
                 id
         );

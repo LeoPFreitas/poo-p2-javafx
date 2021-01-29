@@ -53,7 +53,7 @@ public class ImportationUIController {
         cbxCategory.getItems().setAll(ProductCategory.values());
     }
 
-    public void importProduct(ActionEvent actionEvent) {
+    public void importProduct(ActionEvent actionEvent) throws IOException {
         if (importedProduct == null) {
             createImportedProduct();
         }
@@ -61,6 +61,8 @@ public class ImportationUIController {
         getEntityFromView();
 
         importProductUseCase.importProduct(importedProduct);
+
+        WindowLoader.setRoot("PersonManagementUI");
     }
 
     private void createImportedProduct() {

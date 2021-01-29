@@ -26,4 +26,6 @@
     <ComboBox fx:id="cbxPersonType" layoutX="467.0" layoutY="67.0" onAction="#updatePersonTypeFields"
               prefWidth="150.0"/>
     <Label fx:id="lbCpf" layoutX="427.0" layoutY="117.0" text="CPF:"/>
+    <Label layoutX="369.0" layoutY="163.0" text="Importacoes:"/>
+    <Label fx:id="lbTotalmports" layoutX="467.0" layoutY="163.0" prefHeight="16.0" prefWidth="246.0"/>
 </AnchorPane>
