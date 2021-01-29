@@ -73,7 +73,8 @@ public class SqliteProductImportDAO implements ProductImportDAO {
     }
 
     private ImportedProduct resultSetToEntity(ResultSet rs) throws SQLException {
-        long id = rs.getLong("id");
+        long importId = rs.getLong("id");
+        long personId = rs.getLong("user");
         String date = rs.getString("date");
         LocalDate convertedDate = null;
 
@@ -86,7 +87,8 @@ public class SqliteProductImportDAO implements ProductImportDAO {
                 rs.getDouble("product_price"),
                 rs.getDouble("product_wight"),
                 convertedDate,
-                id
+                importId,
+                personId
         );
     }
 

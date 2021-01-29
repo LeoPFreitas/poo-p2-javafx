@@ -4,6 +4,7 @@ import org.example.application.repository.DatabaseBuilder;
 import org.example.application.repository.SqlitePersonDAO;
 import org.example.application.repository.SqliteProductImportDAO;
 import org.example.application.view.WindowLoader;
+import org.example.domain.entities.importation.FindImportedProductUseCase;
 import org.example.domain.usecases.importation.ImportProductUseCase;
 import org.example.domain.usecases.importation.ProductImportDAO;
 import org.example.domain.usecases.person.*;
@@ -15,6 +16,7 @@ public class Main {
     public static FindPersonUseCase findPersonUseCase;
     public static RemovePersonUseCase removePersonUseCase;
     public static ImportProductUseCase importProductUseCase;
+    public static FindImportedProductUseCase findImportedProductUseCase;
 
 
     public static void main(String[] args) {
@@ -37,5 +39,6 @@ public class Main {
 
         ProductImportDAO productImportDAO = new SqliteProductImportDAO();
         importProductUseCase = new ImportProductUseCase(productImportDAO, findPersonUseCase);
+        findImportedProductUseCase = new FindImportedProductUseCase(productImportDAO);
     }
 }
