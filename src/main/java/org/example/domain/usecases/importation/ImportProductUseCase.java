@@ -24,18 +24,17 @@ public class ImportProductUseCase {
         Person person = findPersonUseCase.findOne(personId)
                 .orElseThrow(() -> new EntityNotFoundException("Can not found a person with ID " + personId));
 
+//        Double dutiesPercentage = person.getImportDuties();
+//        Double totalDuties = importedProduct.calcDuties(dutiesPercentage);
+//        Double finalPrice = importedProduct.calcFinalPrice();
+//
+//        importedProduct.setTotalDuties(totalDuties);
+//        importedProduct.setFinalPrice(finalPrice);
+
         Long importId = productImportDAO.create(importedProduct);
 
         person.addImportedProduct(importedProduct);
 
         return importId;
     }
-
-//    Double totalFreight = importedProduct.getTotalFreight();
-//    Double productPrice = importedProduct.getProductPrice();
-//    Double duties = importedProduct.calcDuties(totalFreight, productPrice);
-//    Double finalPrice = importedProduct.calcFinalPrice(totalFreight, productPrice, duties);
-//
-//        importedProduct.setTotalDuties(duties);
-//        importedProduct.setFinalPrice(finalPrice);
 }

@@ -1,7 +1,7 @@
 INSERT INTO person(first_name, last_name, email, cnpj, cpf, rg)
 VALUES ('Leonardo', 'Freitas', 'a@asasa.com', null, 4234334, 434334);
 INSERT INTO person(first_name, last_name, email, cnpj, cpf, rg)
-VALUES ('Leonardo sdsd', 'Freitas sdsds', 'sa@dsa.com', null, 324234334, 434334);
+VALUES ('Leonardo sdsd', 'Freitas sdsds', 'sa@dsa.com', null, 324234334, 32434334);
 INSERT INTO person(first_name, last_name, email, cnpj, cpf, rg)
 VALUES ('Leonadsdsrdo', 'Freita dsdss', 'a@ads.com', null, 45654, 43656);
 INSERT INTO person(first_name, last_name, email, cnpj, cpf, rg)

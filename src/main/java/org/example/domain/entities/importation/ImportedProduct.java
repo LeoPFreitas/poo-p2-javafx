@@ -11,6 +11,9 @@ public class ImportedProduct {
     private Long productImportId;
     private Long userId;
 
+    private Double totalDuties;
+    private Double finalPrice;
+
     public ImportedProduct() {
     }
 
@@ -118,6 +121,30 @@ public class ImportedProduct {
         this.userId = userId;
     }
 
+    public Double calcFinalPrice() {
+        return this.productPrice + this.totalDuties;
+    }
+
+    public Double calcDuties(Double dutiesPercentage) {
+        return this.productPrice * dutiesPercentage;
+    }
+
+    public Double getTotalDuties() {
+        return totalDuties;
+    }
+
+    public void setTotalDuties(Double totalDuties) {
+        this.totalDuties = totalDuties;
+    }
+
+    public Double getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(Double finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
     @Override
     public String toString() {
         return "ImportedProduct{" +
@@ -129,16 +156,4 @@ public class ImportedProduct {
                 ", id=" + productImportId +
                 '}';
     }
-
-//    public Double calcDuties(Double totalFreight, Double totalProductPrice) {
-//
-//        Person person = findPersonUseCase.findOne(this.userId)
-//                .orElseThrow(() -> new EntityNotFoundException("User with ID " + this.userId + " not founded."));
-//
-//        return (totalFreight + totalProductPrice) * person.getImportDuties();
-//    }
-//
-//    public Double calcFinalPrice(Double totalFreight, Double totalProductPrice, Double totalDuties) {
-//        return totalFreight + totalProductPrice + totalDuties;
-//    }
 }

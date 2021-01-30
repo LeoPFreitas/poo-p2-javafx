@@ -25,9 +25,9 @@ public class MainUIController {
     @FXML
     public TableColumn<ImportedProduct, Long> cPersonId;
     @FXML
-    public TableColumn<ImportedProduct, String> cProductName;
+    public TableColumn<ImportedProduct, Double> cProductPrice;
     @FXML
-    public TableColumn<ImportedProduct, Double> cTotalPrice;
+    public TableColumn<ImportedProduct, String> cProductName;
     @FXML
     public TableColumn<ImportedProduct, LocalDate> cDate;
     @FXML
@@ -38,6 +38,12 @@ public class MainUIController {
     public DatePicker dtpInitialDate;
     @FXML
     public DatePicker dtpEndDate;
+
+    @FXML
+    public TableColumn<ImportedProduct, Double> cTotalDuties;
+    @FXML
+    public TableColumn<ImportedProduct, Double> cFinalPrice;
+
 
     private ObservableList<ImportedProduct> tableData;
 
@@ -57,8 +63,10 @@ public class MainUIController {
         cImportId.setCellValueFactory(new PropertyValueFactory<>("productImportId"));
         cPersonId.setCellValueFactory(new PropertyValueFactory<>("userId"));
         cProductName.setCellValueFactory(new PropertyValueFactory<>("productName"));
-        cTotalPrice.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
+        cProductPrice.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
         cDate.setCellValueFactory(new PropertyValueFactory<>("importDate"));
+        cTotalDuties.setCellValueFactory(new PropertyValueFactory<>("totalDuties"));
+        cFinalPrice.setCellValueFactory(new PropertyValueFactory<>("finalPrice"));
     }
 
     private void loadDataAndShow() {

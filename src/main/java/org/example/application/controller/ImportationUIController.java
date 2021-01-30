@@ -63,7 +63,7 @@ public class ImportationUIController {
 
             importProductUseCase.importProduct(importedProduct);
 
-            WindowLoader.setRoot("PersonManagementUI");
+            WindowLoader.setRoot("ImportationUI");
         } catch (NumberFormatException e) {
             showAlert("Error!", "Product price and/or product product weight must be a valid Double",
                     Alert.AlertType.ERROR);

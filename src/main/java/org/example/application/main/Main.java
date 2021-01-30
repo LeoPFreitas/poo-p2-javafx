@@ -4,7 +4,7 @@ import org.example.application.repository.DatabaseBuilder;
 import org.example.application.repository.SqlitePersonDAO;
 import org.example.application.repository.SqliteProductImportDAO;
 import org.example.application.view.WindowLoader;
-import org.example.domain.entities.importation.FindImportedProductUseCase;
+import org.example.domain.usecases.importation.FindImportedProductUseCase;
 import org.example.domain.usecases.importation.ImportProductUseCase;
 import org.example.domain.usecases.importation.ProductImportDAO;
 import org.example.domain.usecases.person.*;
