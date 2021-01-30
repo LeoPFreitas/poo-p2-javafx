@@ -153,7 +153,8 @@ public class ImportedProduct {
                 ", productPrice=" + productPrice +
                 ", productWeightInKG=" + productWeightInKG +
                 ", importDate=" + importDate +
-                ", id=" + productImportId +
+                ", productImportId=" + productImportId +
+                ", userId=" + userId +
                 '}';
     }
 }
