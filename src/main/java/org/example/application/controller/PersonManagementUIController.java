@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.application.view.WindowLoader;
 import org.example.domain.entities.person.Person;
@@ -30,6 +27,12 @@ public class PersonManagementUIController {
     public Button btnNew;
     @FXML
     public Button btnBack;
+    @FXML
+    public TextField txtFindByName;
+    @FXML
+    public Button btnFind;
+    @FXML
+    public Button btnClear;
     @FXML
     private TableView<Person> tableView;
     @FXML
@@ -118,5 +121,15 @@ public class PersonManagementUIController {
         alert.setContentText(message);
         alert.setHeaderText(null);
         alert.showAndWait();
+    }
+
+    public void filterByName(ActionEvent actionEvent) {
+        tableView.setItems(tableData
+                .filtered(data -> txtFindByName.getText().equals(data.getFirstName())));
+    }
+
+    public void clearFIndFild(ActionEvent actionEvent) {
+        txtFindByName.clear();
+        tableView.setItems(tableData);
     }
 }

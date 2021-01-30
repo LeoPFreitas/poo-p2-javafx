@@ -2,12 +2,12 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="400.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="542.0" prefWidth="680.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="org.example.application.controller.PersonManagementUIController">
-    <TableView fx:id="tableView" layoutX="14.0" layoutY="10.0" prefHeight="287.0" prefWidth="650.0"
+    <TableView fx:id="tableView" layoutX="14.0" layoutY="88.0" prefHeight="366.0" prefWidth="650.0"
                AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0"
-               AnchorPane.topAnchor="25.0">
+               AnchorPane.topAnchor="88.0">
         <columns>
             <TableColumn fx:id="cId" prefWidth="54.0" text="ID"/>
             <TableColumn fx:id="cFirstName" prefWidth="121.0" text="Nome"/>
@@ -18,15 +18,21 @@
     </TableView>
     <Pane layoutX="14.0" layoutY="369.0" prefHeight="61.0" prefWidth="573.0" AnchorPane.bottomAnchor="15.0"
           AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
-        <Button fx:id="btnDelete" layoutX="279.0" layoutY="14.0" mnemonicParsing="false"
-                onAction="#deletePerson" prefHeight="34.0" prefWidth="82.0" text="Deletar"/>
+        <Button fx:id="btnDelete" layoutX="279.0" layoutY="14.0" mnemonicParsing="false" onAction="#deletePerson"
+                prefHeight="34.0" prefWidth="82.0" text="Deletar"/>
         <Button fx:id="btnEdit" layoutX="471.0" layoutY="14.0" mnemonicParsing="false" onAction="#editPerson"
                 prefHeight="34.0" prefWidth="82.0" text="Editar"/>
-        <Button fx:id="btnDetail" layoutX="376.0" layoutY="14.0" mnemonicParsing="false"
-                onAction="#detailPerson" prefHeight="34.0" prefWidth="82.0" text="Detalhar"/>
+        <Button fx:id="btnDetail" layoutX="376.0" layoutY="14.0" mnemonicParsing="false" onAction="#detailPerson"
+                prefHeight="34.0" prefWidth="82.0" text="Detalhar"/>
         <Button fx:id="btnNew" layoutX="567.0" layoutY="14.0" mnemonicParsing="false" onAction="#createPerson"
                 prefHeight="34.0" prefWidth="82.0" text="Novo"/>
-        <Button fx:id="btnBack" layoutY="14.0" mnemonicParsing="false" onAction="#backToPreviousScene"
-                prefHeight="34.0" prefWidth="82.0" text="Voltar"/>
+        <Button fx:id="btnBack" layoutY="14.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="34.0"
+                prefWidth="82.0" text="Voltar"/>
     </Pane>
+    <Label layoutX="15.0" layoutY="42.0" text="Buscar por nome:"/>
+    <TextField fx:id="txtFindByName" layoutX="141.0" layoutY="37.0"/>
+    <Button fx:id="btnFind" layoutX="322.0" layoutY="37.0" mnemonicParsing="false" onAction="#filterByName"
+            text="Buscar"/>
+    <Button fx:id="btnClear" layoutX="394.0" layoutY="37.0" mnemonicParsing="false" onAction="#clearFIndFild"
+            text="Limpar"/>
 </AnchorPane>
