@@ -3,16 +3,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="622.0" prefWidth="796.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="706.0" prefWidth="796.0"
             xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.example.application.controller.MainUIController">
     <Label fx:id="lbName" layoutX="346.0" layoutY="107.0">
         <font>
             <Font size="15.0"/>
         </font>
     </Label>
-    <TableView fx:id="tableView" layoutX="14.0" layoutY="137.0" onMouseClicked="#getSelectedAndSetButton"
-               prefHeight="397.0" prefWidth="766.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="15.0"
-               AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="137.0">
+    <TableView fx:id="tableView" layoutX="14.0" layoutY="224.0" prefHeight="394.0" prefWidth="766.0"
+               AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0"
+               AnchorPane.topAnchor="224.0">
         <columns>
             <TableColumn fx:id="cImportId" prefWidth="114.0" text="ID Importação"/>
             <TableColumn fx:id="cPersonId" prefWidth="119.0" text="ID Pessoa"/>
@@ -23,10 +23,8 @@
     </TableView>
     <Pane layoutX="14.0" layoutY="369.0" prefHeight="61.0" prefWidth="573.0" AnchorPane.bottomAnchor="15.0"
           AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
-        <Button fx:id="btnManagePerson" layoutY="8.0" mnemonicParsing="false" onAction="#managePerson" prefHeight="46.0"
-                prefWidth="177.0" text="Gerenciar Usuários"/>
-        <Button layoutX="186.0" layoutY="8.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0"
-                text="Gerenciar Relatorios"/>
+        <Button fx:id="btnManagePerson" layoutX="402.0" layoutY="8.0" mnemonicParsing="false" onAction="#managePerson"
+                prefHeight="46.0" prefWidth="177.0" text="Gerenciar Usuários"/>
         <Button fx:id="btnImport" layoutX="589.0" layoutY="8.0" mnemonicParsing="false" onAction="#startImportProcess"
                 prefHeight="46.0" prefWidth="177.0" text="Nova Importação"/>
 
@@ -37,9 +35,22 @@
             <Font name="Andale Mono" size="18.0"/>
         </font>
     </Label>
-    <Label layoutX="15.0" layoutY="101.0" prefHeight="16.0" prefWidth="766.0" text="Ultimas Importações">
+    <Label layoutX="15.0" layoutY="195.0" prefHeight="16.0" prefWidth="766.0" text="Ultimas Importações">
         <font>
             <Font size="18.0"/>
         </font>
     </Label>
+    <Label layoutX="16.0" layoutY="84.0" prefHeight="16.0" prefWidth="766.0" text="Filtros">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+    <Label layoutX="14.0" layoutY="124.0" text="Data Inicial:"/>
+    <DatePicker fx:id="dtpInitialDate" layoutX="102.0" layoutY="119.0"/>
+    <DatePicker fx:id="dtpEndDate" layoutX="404.0" layoutY="119.0"/>
+    <Label layoutX="322.0" layoutY="124.0" text="Data Final:"/>
+    <Button fx:id="btnFilter" layoutX="614.0" layoutY="118.0" mnemonicParsing="false" onAction="#applyFilter"
+            text="Filtrar"/>
+    <Button fx:id="btnCLearFilter" layoutX="681.0" layoutY="118.0" mnemonicParsing="false" onAction="#clearFilter"
+            text="Limpar Filtro"/>
 </AnchorPane>
